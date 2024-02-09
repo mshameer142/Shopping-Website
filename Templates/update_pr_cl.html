@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>client profile</title>
+  <link rel="stylesheet" href="style.css">
+
+    <style>
+          #quiz-form{
+            border-radius: 5px;
+            border: 2px solid rgb(241, 238, 238);
+            width: 450px;
+            background-color: white;
+            padding: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+          }
+          #submit-btn{
+          margin-top: 24px;
+          }
+          input[type=submit] {
+            width: 22%;
+            background-color: #138bec;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button {
+            width: 22%;
+            background-color: #138bec;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover{
+            color: #06BBCC;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        #img-satya{
+          width: 150px;
+          height: 150px;
+          border-radius: 100%;
+        }
+        .form-field{
+          border: none;
+          border-bottom: 1px solid #ccc;
+          width: 100%;
+          padding: 1%;
+        }
+        .form-label{
+          margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body bgcolor="#3E3D53">
+  <div >
+
+      <div align="center" style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+      </div>
+
+       <form id="quiz-form" method="post" action="{% url 'update_pr_cl' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!--<center><img id="img-satya" src="/media/{{b.Image}}" alt="satyendra"><br><br></center>-->
+            <h1 style="text-align: center;">{{b.user.first_name}} {{b.user.last_name}}</h1><br><br>
+            <p class="form-label">First Name :</p><input class="form-field" type="text" value="{{um.first_name}}" name="first_name" required><br><br>
+            <p class="form-label">Last Name :</p><input class="form-field" type="text" value="{{um.last_name}}" name="last_name" required><br><br>
+            <p class="form-label">Username :</p><input class="form-field" type="text" value="{{um.username}}" name="user_name" required><br><br>
+            <p class="form-label">Email :</p><input class="form-field" type="email" value="{{um.email}}" name="email" required><br><br>
+            <p class="form-label">Password :</p><input class="form-field" type="password" value="{{b.Password}}" name="psw" required><br><br>
+            <input type="hidden" name="imgg" value="{{b.Image}}">
+            <p class="form-label">Upload new image :</p><input class="form-field" type="file" value="Upload new image" name="imgg1"><br><br>
+
+          <div id="submit-btn">
+          <button type="submit">UPDATE</button>
+              <button type="button" onclick="location.href='{% url 'client_home' %}'" name='mybtn2'>BACK</button>
+        </div>
+        </form>
+  </div>
+  </body>
+</html>

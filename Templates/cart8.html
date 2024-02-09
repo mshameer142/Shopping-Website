@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add to cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bg-effect.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="card">
+  <img onclick="showImgPreview()" class="hset" src="{% static 'assets/images/kid-02.jpg' %}">
+  <p class="zoom-txt">Click image to zoom</p>
+  <p class="sp-label">Free shipping</p>
+  <h1 class="title">Summer Cap<br>Navy blue<br><br> size:S<br>Item:1</h1>
+
+    <p class="old-price">$20,-</p>
+  <p class="new-price">$12 -</p>
+  <p class="offer-info">The offer is valid until April 3 or as long as stock lasts</p>
+    <a href="{% url 'add_to_cart_k' %}"><button class="buy-btn">Add to cart</button><br></a>
+
+  <div class="green-dot"></div>
+  <p class="stock-pcs">50+ pcs. in stock.</p>
+  <button  class="add-to-cart-btn" onclick="showAlert('Product added to cart!')" >
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-scale" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <line x1="7" y1="20" x2="17" y2="20"></line>
+   <path d="M6 6l6 -1l6 1"></path>
+   <line x1="12" y1="3" x2="12" y2="20"></line>
+   <path d="M9 12l-3 -6l-3 6a3 3 0 0 0 6 0"></path>
+   <path d="M21 12l-3 -6l-3 6a3 3 0 0 0 6 0"></path>
+
+</svg>
+      <a href="{% url 'product' %}"></a> payment via card</button>
+  <button class="add-to-wl-btn" onclick="showAlert('Product added to your Wishlist!')" >
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+</svg>
+    Add to wishlist</button>
+</div><!-- ./ card -->
+
+<div class="preview-container">
+  <div class="close-prev-btn" onclick="hidePreview()"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <line x1="18" y1="6" x2="6" y2="18"></line>
+   <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+    </div>
+      <img id="prev-img" src="">
+</div>
+<script>
+    function showImgPreview() {
+  $('.preview-container').show();
+  $('#prev-img').attr('src', 'https://i.postimg.cc/rwm6FtY6/hset.png');
+}
+
+// Hide Preview
+function hidePreview() { $('.preview-container').hide(); }
+function showAlert(mess) {
+  Swal.fire({ position: 'center', icon: 'success', title: '', text: mess, showConfirmButton: false, timer: 1500 });
+}
+</>
+</body>
+</html>

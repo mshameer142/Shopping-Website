@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin update profile</title>
+  <link rel="stylesheet" href="style.css">
+
+    <style>
+          #quiz-form{
+            border-radius: 5px;
+            border: 2px solid rgb(241, 238, 238);
+            width: 450px;
+            background-color: white;
+            padding: 24px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+          }
+          #submit-btn{
+          margin-top: 24px;
+          }
+          input[type=submit] {
+            width: 22%;
+            background-color: #138bec;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button[type=submit] {
+            width: 22%;
+            background-color: #138bec;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover{
+            color: #06BBCC;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        #img-satya{
+          width: 150px;
+          height: 150px;
+          border-radius: 100%;
+        }
+        .form-field{
+          border: none;
+          border-bottom: 1px solid #ccc;
+          width: 100%;
+          padding: 1%;
+        }
+        .form-label{
+          margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body bgcolor="CD968B">
+  <div>
+
+
+       <form id="quiz-form" action="{% url 'edit_admin' %}" method="post">
+        {% csrf_token %}
+
+
+     <div style="color:blue;" align="center">
+            {% if messages %}
+                {% for msg in messages %}
+                        {{ msg }}
+                {% endfor %}
+            {% endif %}
+     </div>
+
+
+            <center><img id="img-satya" src="/media/{{bb1.Image}}" alt="satyendra"><br><br></center>
+           <h1 style="text-align: center;">{{um.first_name}} {{um.last_name}}</h1><br><br>
+    <p class="form-label">First Name :</p>
+    <input class="form-field" type="text" value="{{um.first_name}}" name="first"><br>
+    <p class="form-label">Last Name :</p>
+    <input class="form-field" type="text" value="{{um.last_name}}" name="last"><br>
+    <p class="form-label">Userame :</p>
+    <input class="form-field" type="text" value="{{um.username}}" name="user_name"><br>
+    <p class="form-label">Email :</p>
+    <input class="form-field" type="email" value="{{um.email}}" name="em"><br>
+    <p class="form-label">Password :</p>
+    <input class="form-field" type="password" value="{{bb1.Password}}" name="psw"><br>
+
+          <div id="submit-btn">
+          <button type="submit">UPDATE</button>
+              <button type="submit" onclick="location.href='{% url 'adm_prof' %}'" name='mybtn2'>BACK</button>
+        </div>
+        </form>
+  </div>
+  </body>
+</html>

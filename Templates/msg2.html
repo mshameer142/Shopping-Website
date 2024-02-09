@@ -1,0 +1,108 @@
+{% load static %}
+<html lang="en">
+  <head>
+   <title>Message</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+   </head>
+   <body>
+
+   <section class="ftco-section">
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+               <h2 class="heading-section">MESSAGES</h2>
+            </div>
+         </div>
+
+
+         <div style="color:blue;" align="center">
+            {% if messages %}
+               {% for msg in messages %}
+                  <h4 style="color:blue;">{{ msg }}</h4>
+               {% endfor %}
+            {% endif %}
+         </div>
+
+         {% if bb %}
+
+         <div class="row">
+            <div class="col-md-12">
+               <div class="table-wrap">
+                  <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                    <tr>
+                            <th>Sender category</th>
+                            <th>Sender email</th>
+                            <th>Message</th>
+                            </tr>
+                    </thead>
+
+                    <tbody>
+                  {% for dd in bb %}
+                      <tr>
+
+                             <th scope="row">
+                                    {{dd.From_reg.User_role}}
+                              </th>
+
+                              <td>
+                                 {{dd.From_reg.user.email}}
+                              </td>
+
+                              <td>
+                                 {{dd.Message_content}}
+                              </td>
+
+                               <td>
+                                <button onclick="window.location.href = '{% url 'del_msg_staff' dd.id %}';">Delete</button>
+                               </td>
+
+                               <td>
+                                <button onclick="window.location.href = '{% url 'reply_msg_staff' dd.id %}';">Reply</button>
+                            </td>
+
+                      </tr>
+                            {% endfor %}
+                    </tbody>
+                  </table>
+
+                        {% else %}
+
+                        <h1 align="center" style="color:White">No messages available</h1>
+
+                        {% endif %}
+
+
+               </div>
+            </div>
+         </div>
+
+
+      </div>
+      <br><br>
+
+
+   </section>
+
+   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+    <div align="center">
+       <button onclick="window.location.href = '{% url 'sent_msg_staff' %}';">Send message</button><br><br>
+        <button onclick="window.location.href = '{% url 'staff_home' %}';">Back</button>
+    </div>
+
+
+</body>
+</html>

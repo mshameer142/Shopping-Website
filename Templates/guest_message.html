@@ -1,0 +1,113 @@
+{% load static %}
+<html lang="en">
+  <head>
+   <title>Guest messages</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+   </head>
+   <body>
+
+
+         <div align="center" style="color:blue">
+
+            {% if messages %}
+               {% for msg in messages %}
+                  {{ msg }}
+               {% endfor %}
+            {% endif %}
+
+         </div>
+
+
+
+   <section class="ftco-section">
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+               <h2 class="heading-section">Guest messages</h2><br><br>
+            </div>
+
+
+
+         {% if bb %}
+
+         <div class="row">
+            <div class="col-md-12">
+               <div class="table-wrap">
+                  <table class="table table-bordered table-dark table-hover">
+                    <thead>
+                      <tr>
+
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Message
+                                </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                   {% for i in bb %}
+
+                      <tr>
+
+                              <td>
+                                  {{i.Name}}
+                              </td>
+                              <td>
+                                  {{i.Email}}
+                              </td>
+                              <td>
+                                  {{i.Message_content}}
+                              </td>
+
+                        <td>
+                                  <button type="button" onclick="location.href='{% url 'reply_g_msg' i.id %}'" name='del'>Reply</button>
+                               </td>
+
+
+                              <td>
+                                  <button type="button" onclick="location.href='{% url 'delete_g_msg' i.id %}'" name='del'>Delete</button>
+                              </td>
+
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+
+         {% else %}
+
+         <h1 align="center" style="color:#3E3D53">No guest messages available</h1>
+
+         {% endif %}
+
+      </div>
+      <br><br>
+      <div align="center">
+         <button type="submit" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+      </div>
+   </section>
+
+   <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/popper.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+   </body>
+</html>
